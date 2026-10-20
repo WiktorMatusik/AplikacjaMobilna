@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace AplikacjaMobilna.Pages
+namespace AplikacjaMobilna
 {
     public partial class App : Application
     {
