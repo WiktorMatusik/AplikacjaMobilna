@@ -1,4 +1,4 @@
-﻿namespace AplikacjaMobilna
+﻿namespace AplikacjaMobilna.Pages
 {
     public partial class MainPage : ContentPage
     {
