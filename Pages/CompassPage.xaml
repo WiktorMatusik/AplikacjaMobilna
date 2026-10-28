@@ -7,18 +7,43 @@
              BackgroundColor="#F4F6F9"
              Title="Kompas do domu">
 
-    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="20" Padding="20">
-        <Label Text="🧭" FontSize="60" HorizontalTextAlignment="Center" />
-        <Label Text="Kompas do domu" FontSize="24" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="#333333" />
-        <Label Text="Strona w budowie" FontSize="18" TextColor="#666666" HorizontalTextAlignment="Center" />
+    <Grid RowDefinitions="Auto, *, Auto" Padding="20">
 
-        <!-- Przycisk powrotu-->
-        <Border Stroke="#1976D2" StrokeThickness="2" Background="#1976D2" StrokeShape="RoundRectangle 12" Padding="15,10" HorizontalOptions="Center" WidthRequest="200">
-            <Border.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding GoBackCommand}" />
-            </Border.GestureRecognizers>
-            <Label Text="POWRÓT" TextColor="White" FontAttributes="Bold" FontSize="16" HorizontalTextAlignment="Center" />
-        </Border>
-    </VerticalStackLayout>
+        <!-- Górny nagłówek ze statusem -->
+        <VerticalStackLayout Grid.Row="0" Spacing="5" Margin="0,10,0,10">
+            <Label Text="🧭 Kompas nawigacyjny" FontSize="22" FontAttributes="Bold" TextColor="#1976D2" HorizontalTextAlignment="Center" />
+            <Label Text="{Binding StatusText, TargetNullValue='Szukanie sygnatura GPS...'}" FontSize="16" TextColor="#666666" HorizontalTextAlignment="Center" />
+        </VerticalStackLayout>
 
+        <!-- Główna sekcja wizualna kompasu -->
+        <VerticalStackLayout Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" Spacing="20">
+            <!-- Okrągła tarcza kompasu (Karta) -->
+            <Frame WidthRequest="220" HeightRequest="220" CornerRadius="110" BackgroundColor="White" HasShadow="True" Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                <Grid>
+                    <!-- Strzałka nawigacyjna obracana dynamicznie przez ViewModel -->
+                    <Label Text="⬆️" FontSize="80" HorizontalOptions="Center" VerticalOptions="Center" 
+                           Rotation="{Binding ArrowRotation}" />
+                </Grid>
+            </Frame>
+
+            <!-- Informacja o odległości do domu -->
+            <Label Text="{Binding DistanceText, TargetNullValue='Dystans do domu: -- m'}" FontSize="20" FontAttributes="Bold" TextColor="#333333" HorizontalTextAlignment="Center" />
+        </VerticalStackLayout>
+
+        <!-- Panel dolny z dużymi przyciskami (Wygodne dla seniora) -->
+        <VerticalStackLayout Grid.Row="2" Spacing="12" Margin="0,10,0,0">
+            <!-- Przycisk zmiany trybu (np. Przełącz na Północ / Dom) -->
+            <Button Text="PRZEŁĄCZ TRYB" 
+                    Command="{Binding ToggleModeCommand}"
+                    BackgroundColor="#4CAF50" TextColor="White" FontAttributes="Bold" FontSize="16" 
+                    CornerRadius="12" HeightRequest="55" />
+
+            <!-- Przycisk powrotu -->
+            <Button Text="POWRÓT" 
+                    Command="{Binding GoBackCommand}"
+                    BackgroundColor="#1976D2" TextColor="White" FontAttributes="Bold" FontSize="16" 
+                    CornerRadius="12" HeightRequest="55" />
+        </VerticalStackLayout>
+
+    </Grid>
 </ContentPage>
