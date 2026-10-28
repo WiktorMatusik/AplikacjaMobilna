@@ -17,14 +17,26 @@
 
         <!-- Główna sekcja wizualna kompasu -->
         <VerticalStackLayout Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" Spacing="20">
-            <!-- Okrągła tarcza kompasu (Karta) -->
-            <Frame WidthRequest="220" HeightRequest="220" CornerRadius="110" BackgroundColor="White" HasShadow="True" Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+            <!-- Okrągła tarcza kompasu (Zastąpiona przez Border) -->
+            <Border WidthRequest="220" 
+                    HeightRequest="220" 
+                    Background="White" 
+                    Stroke="#E0E0E0"
+                    StrokeThickness="1"
+                    HorizontalOptions="Center" 
+                    VerticalOptions="Center"
+                    Padding="0">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="110" />
+                </Border.StrokeShape>
+
                 <Grid>
                     <!-- Strzałka nawigacyjna obracana dynamicznie przez ViewModel -->
                     <Label Text="⬆️" FontSize="80" HorizontalOptions="Center" VerticalOptions="Center" 
                            Rotation="{Binding ArrowRotation}" />
                 </Grid>
-            </Frame>
+            </Border>
 
             <!-- Informacja o odległości do domu -->
             <Label Text="{Binding DistanceText, TargetNullValue='Dystans do domu: -- m'}" FontSize="20" FontAttributes="Bold" TextColor="#333333" HorizontalTextAlignment="Center" />

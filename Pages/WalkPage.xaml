@@ -18,21 +18,37 @@
         <!-- Główna sekcja ze statystykami (Kafelki) -->
         <VerticalStackLayout Grid.Row="1" VerticalOptions="Center" Spacing="15">
 
-            <!-- Kafel przebytego dystansu -->
-            <Frame BackgroundColor="White" CornerRadius="16" HasShadow="True" Padding="20">
+            <!-- Kafel przebytego dystansu (Zastąpiony przez Border) -->
+            <Border Background="White" 
+                    Stroke="#E0E0E0" 
+                    StrokeThickness="1" 
+                    Padding="20">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="16" />
+                </Border.StrokeShape>
+
                 <VerticalStackLayout Spacing="5">
                     <Label Text="Przebyty dystans" FontSize="14" TextColor="#666666" HorizontalTextAlignment="Center" />
                     <Label Text="{Binding DistanceText, TargetNullValue='0.00 km'}" FontSize="36" FontAttributes="Bold" TextColor="#1976D2" HorizontalTextAlignment="Center" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <!-- Kafel czasu trwania -->
-            <Frame BackgroundColor="White" CornerRadius="16" HasShadow="True" Padding="20">
+            <!-- Kafel czasu trwania (Zastąpiony przez Border) -->
+            <Border Background="White" 
+                    Stroke="#E0E0E0" 
+                    StrokeThickness="1" 
+                    Padding="20">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="16" />
+                </Border.StrokeShape>
+
                 <VerticalStackLayout Spacing="5">
                     <Label Text="Czas trwania" FontSize="14" TextColor="#666666" HorizontalTextAlignment="Center" />
                     <Label Text="{Binding TimeText, TargetNullValue='00:00:00'}" FontSize="32" FontAttributes="Bold" TextColor="#333333" HorizontalTextAlignment="Center" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
         </VerticalStackLayout>
 
