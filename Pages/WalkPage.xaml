@@ -7,18 +7,49 @@
              BackgroundColor="#F4F6F9"
              Title="Mój Spacer">
 
-    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="20" Padding="20">
-        <Label Text="🚶" FontSize="60" HorizontalTextAlignment="Center" />
-        <Label Text="Mój Spacer" FontSize="24" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="#333333" />
-        <Label Text="Strona w budowie" FontSize="18" TextColor="#666666" HorizontalTextAlignment="Center" />
+    <Grid RowDefinitions="Auto, *, Auto" Padding="20">
 
-        <!-- Przycisk powrotu -->
-        <Border Stroke="#1976D2" StrokeThickness="2" Background="#1976D2" StrokeShape="RoundRectangle 12" Padding="15,10" HorizontalOptions="Center" WidthRequest="200">
-            <Border.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding GoBackCommand}" />
-            </Border.GestureRecognizers>
-            <Label Text="POWRÓT" TextColor="White" FontAttributes="Bold" FontSize="16" HorizontalTextAlignment="Center" />
-        </Border>
-    </VerticalStackLayout>
+        <!-- Górny nagłówek -->
+        <VerticalStackLayout Grid.Row="0" Spacing="5" Margin="0,10,0,10">
+            <Label Text="🚶 Monitorowanie Spaceru" FontSize="22" FontAttributes="Bold" TextColor="#1976D2" HorizontalTextAlignment="Center" />
+            <Label Text="{Binding StatusText, TargetNullValue='GPS aktywny i gotowy'}" FontSize="16" TextColor="#666666" HorizontalTextAlignment="Center" />
+        </VerticalStackLayout>
 
+        <!-- Główna sekcja ze statystykami (Kafelki) -->
+        <VerticalStackLayout Grid.Row="1" VerticalOptions="Center" Spacing="15">
+
+            <!-- Kafel przebytego dystansu -->
+            <Frame BackgroundColor="White" CornerRadius="16" HasShadow="True" Padding="20">
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Przebyty dystans" FontSize="14" TextColor="#666666" HorizontalTextAlignment="Center" />
+                    <Label Text="{Binding DistanceText, TargetNullValue='0.00 km'}" FontSize="36" FontAttributes="Bold" TextColor="#1976D2" HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Kafel czasu trwania -->
+            <Frame BackgroundColor="White" CornerRadius="16" HasShadow="True" Padding="20">
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Czas trwania" FontSize="14" TextColor="#666666" HorizontalTextAlignment="Center" />
+                    <Label Text="{Binding TimeText, TargetNullValue='00:00:00'}" FontSize="32" FontAttributes="Bold" TextColor="#333333" HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+
+        <!-- Dolny panel z dużymi przyciskami sterującymi -->
+        <VerticalStackLayout Grid.Row="2" Spacing="12" Margin="0,10,0,0">
+            <!-- Przycisk Start / Stop spaceru -->
+            <Button Text="ROZPOCZNIJ SPACER" 
+                    Command="{Binding ToggleWalkCommand}"
+                    BackgroundColor="#4CAF50" TextColor="White" FontAttributes="Bold" FontSize="16" 
+                    CornerRadius="12" HeightRequest="55" />
+
+            <!-- Przycisk powrotu -->
+            <Button Text="POWRÓT" 
+                    Command="{Binding GoBackCommand}"
+                    BackgroundColor="#1976D2" TextColor="White" FontAttributes="Bold" FontSize="16" 
+                    CornerRadius="12" HeightRequest="55" />
+        </VerticalStackLayout>
+
+    </Grid>
 </ContentPage>
