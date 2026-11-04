@@ -7,8 +7,8 @@
     Title="AplikacjaMobilna">
 
     <ShellContent
-        Title="Logowanie"
-        ContentTemplate="{DataTemplate local:LoginPage}"
-        Route="LoginPage" />
+    Title="Ładowanie"
+    ContentTemplate="{DataTemplate local:LoadingPage}"
+    Route="LoadingPage" />
 
 </Shell>

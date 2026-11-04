@@ -22,7 +22,7 @@ public partial class LoginPage : ContentPage
         if (username == "admin" && password == "admin")
         {
             // Przejście do głównej strony po poprawnym zalogowaniu
-            await Shell.Current.GoToAsync("/MainPage");
+            await Shell.Current.GoToAsync($"/{nameof(MainPage)}");
         }
         else
         {

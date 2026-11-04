@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AplikacjaMobilna.Pages.LoadingPage"
+             Title="Ładowanie"
+             Shell.NavBarIsVisible="False">
+
+    <Grid VerticalOptions="Center" HorizontalOptions="Center">
+        <VerticalStackLayout Spacing="20" HorizontalOptions="Center">
+
+            <ActivityIndicator IsRunning="True" 
+                               IsVisible="True" 
+                               Color="#512BD4" 
+                               WidthRequest="60" 
+                               HeightRequest="60" />
+
+            <Label Text="Ładowanie aplikacji..." 
+                   FontSize="18" 
+                   TextColor="Gray" 
+                   HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+    </Grid>
+
+</ContentPage>
