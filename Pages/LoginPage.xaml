@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AplikacjaMobilna.Pages.LoginPage"
+             Title="Logowanie">
+
+    <VerticalStackLayout Spacing="25" Padding="40" VerticalOptions="Center">
+        <Label Text="Panel Logowania" 
+               FontSize="28" 
+               FontAttributes="Bold" 
+               HorizontalOptions="Center" />
+
+        <Entry x:Name="UsernameEntry" 
+               Placeholder="Nazwa użytkownika" 
+               ClearButtonVisibility="WhileEditing" />
+
+        <Entry x:Name="PasswordEntry" 
+               Placeholder="Hasło" 
+               IsPassword="True" 
+               ClearButtonVisibility="WhileEditing" />
+
+        <Button Text="Zaloguj się" 
+                Clicked="OnLoginClicked" 
+                BackgroundColor="#512BD4" 
+                TextColor="White" />
+    </VerticalStackLayout>
+</ContentPage>
