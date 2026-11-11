@@ -1,10 +1,15 @@
-﻿namespace AplikacjaMobilna.Pages;
+﻿using AplikacjaMobilna.Services;
+
+namespace AplikacjaMobilna.Pages;
 
 public partial class LoginPage : ContentPage
 {
+    private readonly LocalDatabaseService _dbService;
+
     public LoginPage()
     {
         InitializeComponent();
+        _dbService = new LocalDatabaseService();
     }
 
     private async void OnLoginClicked(object sender, EventArgs e)
@@ -20,6 +25,15 @@ public partial class LoginPage : ContentPage
 
         if (username == "admin" && password == "admin")
         {
+            await Shell.Current.GoToAsync($"/{nameof(MainPage)}");
+            return;
+        }
+
+        string? role = await _dbService.LoginUserAsync(username, password);
+
+        if (role != null)
+        {
+            await DisplayAlert("Sukces", $"Zalogowano pomyślnie! Rola: {role}", "OK");
             await Shell.Current.GoToAsync($"/{nameof(MainPage)}");
         }
         else

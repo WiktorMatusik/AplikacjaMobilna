@@ -20,7 +20,18 @@
                 <Label Text="🔋" FontSize="18" VerticalOptions="Center" />
                 <Label Text="{Binding BatteryLevel, StringFormat='{0}%'}" FontAttributes="Bold" TextColor="White" FontSize="16" VerticalOptions="Center" />
                 <Label Text="{Binding CurrentTime}" TextColor="White" FontSize="16" VerticalOptions="Center" Margin="10,0,0,0"/>
+                <Button Grid.Column="3" 
+                    Text="Wyloguj" 
+                    Command="{Binding LogoutCommand}"
+                    BackgroundColor="#D32F2F" 
+                    TextColor="White" 
+                    FontSize="12" 
+                    FontAttributes="Bold" 
+                    HeightRequest="35" 
+                    CornerRadius="8" 
+                    VerticalOptions="Center" />
             </HorizontalStackLayout>
+            
         </Grid>
 
         <!-- Główna zawartość -->

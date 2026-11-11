@@ -81,6 +81,16 @@ public partial class MainPageViewModel : ObservableObject, IDisposable
         await Shell.Current.DisplayAlert("Telefon", "Łączenie z opiekunem...", "OK");
     }
 
+    [RelayCommand]
+    private async Task LogoutAsync()
+    {
+        bool confirm = await Shell.Current.DisplayAlert("Wylogowanie", "Czy na pewno chcesz się wylogować?", "Tak", "Nie");
+        if (confirm)
+        {
+            await Shell.Current.GoToAsync(nameof(LoginPage));
+        }
+    }
+
     public void Dispose()
     {
         _timer?.Stop();
