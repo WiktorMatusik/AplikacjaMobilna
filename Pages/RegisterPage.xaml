@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AplikacjaMobilna.Pages.RegisterPage"
+             Title="Rejestracja konta">
+
+    <VerticalStackLayout Spacing="20" Padding="30" VerticalOptions="Center">
+        <Label Text="Utwórz konto" FontSize="28" FontAttributes="Bold" HorizontalOptions="Center" TextColor="#1976D2" />
+
+        <Entry x:Name="UsernameEntry" Placeholder="Nazwa użytkownika" ClearButtonVisibility="WhileEditing" />
+        <Entry x:Name="PasswordEntry" Placeholder="Hasło" IsPassword="True" ClearButtonVisibility="WhileEditing" />
+
+        <Label Text="Wybierz swoją rolę:" FontSize="16" FontAttributes="Bold" />
+        <Picker x:Name="RolePicker" Title="Wybierz rolę">
+            <Picker.Items>
+                <x:String>Senior</x:String>
+                <x:String>Opiekun</x:String>
+            </Picker.Items>
+        </Picker>
+
+        <Button Text="Zarejestruj się" 
+                Clicked="OnRegisterClicked" 
+                BackgroundColor="#4CAF50" 
+                TextColor="White" 
+                FontAttributes="Bold" 
+                HeightRequest="50" />
+
+        <Button Text="Powrót do logowania" 
+                Clicked="OnBackToLoginClicked" 
+                BackgroundColor="Transparent" 
+                TextColor="#1976D2" />
+    </VerticalStackLayout>
+</ContentPage>

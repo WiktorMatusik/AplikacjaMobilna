@@ -8,6 +8,7 @@ namespace AplikacjaMobilna
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(LoadingPage), typeof(LoadingPage));
+            Routing.RegisterRoute(nameof(RegisterPage), typeof(RegisterPage));
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
             Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
             Routing.RegisterRoute(nameof(CompassPage), typeof(CompassPage));

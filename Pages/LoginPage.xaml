@@ -23,5 +23,10 @@
                 Clicked="OnLoginClicked" 
                 BackgroundColor="#512BD4" 
                 TextColor="White" />
+
+        <Button Text="Nie masz konta? Zarejestruj się" 
+                Clicked="OnGoToRegisterClicked" 
+                BackgroundColor="Transparent" 
+                TextColor="#512BD4" />
     </VerticalStackLayout>
 </ContentPage>
