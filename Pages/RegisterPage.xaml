@@ -2,32 +2,49 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AplikacjaMobilna.Pages.RegisterPage"
-             Title="Rejestracja konta">
+             BackgroundColor="#F1F5F9"
+             Shell.NavBarIsVisible="False">
 
-    <VerticalStackLayout Spacing="20" Padding="30" VerticalOptions="Center">
-        <Label Text="Utwórz konto" FontSize="28" FontAttributes="Bold" HorizontalOptions="Center" TextColor="#1976D2" />
+    <VerticalStackLayout VerticalOptions="Center" Padding="24" MaximumWidthRequest="420" HorizontalOptions="Fill">
+        <Border BackgroundColor="White" Stroke="#E2E8F0" StrokeThickness="1" Padding="28" StrokeShape="RoundRectangle 24">
+            <Border.Shadow>
+                <Shadow Brush="#0F172A" Offset="0,8" Radius="20" Opacity="0.08" />
+            </Border.Shadow>
 
-        <Entry x:Name="UsernameEntry" Placeholder="Nazwa użytkownika" ClearButtonVisibility="WhileEditing" />
-        <Entry x:Name="PasswordEntry" Placeholder="Hasło" IsPassword="True" ClearButtonVisibility="WhileEditing" />
+            <VerticalStackLayout Spacing="16">
+                <Label Text="Utwórz nowe konto" FontSize="24" FontAttributes="Bold" TextColor="#0F172A" HorizontalTextAlignment="Center" />
 
-        <Label Text="Wybierz swoją rolę:" FontSize="16" FontAttributes="Bold" />
-        <Picker x:Name="RolePicker" Title="Wybierz rolę">
-            <Picker.Items>
-                <x:String>Senior</x:String>
-                <x:String>Opiekun</x:String>
-            </Picker.Items>
-        </Picker>
+                <Border Stroke="#CBD5E1" StrokeThickness="1" BackgroundColor="#F8FAFC" StrokeShape="RoundRectangle 12" Padding="12,4">
+                    <Entry x:Name="UsernameEntry" Placeholder="Nazwa użytkownika" TextColor="#0F172A" PlaceholderColor="#94A3B8" ClearButtonVisibility="WhileEditing" />
+                </Border>
 
-        <Button Text="Zarejestruj się" 
-                Clicked="OnRegisterClicked" 
-                BackgroundColor="#4CAF50" 
-                TextColor="White" 
-                FontAttributes="Bold" 
-                HeightRequest="50" />
+                <Border Stroke="#CBD5E1" StrokeThickness="1" BackgroundColor="#F8FAFC" StrokeShape="RoundRectangle 12" Padding="12,4">
+                    <Entry x:Name="PasswordEntry" Placeholder="Hasło" IsPassword="True" TextColor="#0F172A" PlaceholderColor="#94A3B8" ClearButtonVisibility="WhileEditing" />
+                </Border>
 
-        <Button Text="Powrót do logowania" 
-                Clicked="OnBackToLoginClicked" 
-                BackgroundColor="Transparent" 
-                TextColor="#1976D2" />
+                <Label Text="Wybierz rolę w aplikacji:" FontSize="14" FontAttributes="Bold" TextColor="#334155" />
+                <Border Stroke="#CBD5E1" StrokeThickness="1" BackgroundColor="#F8FAFC" StrokeShape="RoundRectangle 12" Padding="12,2">
+                    <Picker x:Name="RolePicker" Title="Wybierz rolę" TextColor="#0F172A" TitleColor="#94A3B8">
+                        <Picker.Items>
+                            <x:String>Senior</x:String>
+                            <x:String>Opiekun</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </Border>
+
+                <Button Text="ZAREJESTRUJ SIĘ" 
+                        Clicked="OnRegisterClicked" 
+                        BackgroundColor="#0F766E" 
+                        TextColor="White" 
+                        FontAttributes="Bold" 
+                        HeightRequest="52"
+                        CornerRadius="14" />
+
+                <Button Text="Powrót do logowania" 
+                        Clicked="OnBackToLoginClicked" 
+                        BackgroundColor="Transparent" 
+                        TextColor="#64748B" />
+            </VerticalStackLayout>
+        </Border>
     </VerticalStackLayout>
 </ContentPage>

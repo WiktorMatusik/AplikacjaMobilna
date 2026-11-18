@@ -4,11 +4,25 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:AplikacjaMobilna.Pages"
+    Shell.BackgroundColor="{DynamicResource NavBarBgColor}"
+    Shell.ForegroundColor="{DynamicResource NavBarTextColor}"
+    Shell.TitleColor="{DynamicResource NavBarTextColor}"
+    Shell.FlyoutBehavior="Disabled"
     Title="AplikacjaMobilna">
 
     <ShellContent
-    Title="Ładowanie"
-    ContentTemplate="{DataTemplate local:LoadingPage}"
-    Route="LoadingPage" />
+        Title="Ładowanie"
+        ContentTemplate="{DataTemplate local:LoadingPage}"
+        Route="LoadingPage" />
+
+    <ShellContent
+        Title="Logowanie"
+        ContentTemplate="{DataTemplate local:LoginPage}"
+        Route="LoginPage" />
+
+    <ShellContent
+        Title="Ekran główny"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
 
 </Shell>

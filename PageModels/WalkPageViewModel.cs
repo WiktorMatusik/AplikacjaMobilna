@@ -27,6 +27,13 @@ public partial class WalkPageViewModel : ObservableObject
     [RelayCommand]
     private async Task GoBackAsync()
     {
-        await Shell.Current.GoToAsync($"/{nameof(MainPage)}");
+        if (Shell.Current.Navigation.NavigationStack.Count > 1)
+        {
+            await Shell.Current.GoToAsync("..");
+        }
+        else
+        {
+            await Shell.Current.GoToAsync($"///{nameof(MainPage)}");
+        }
     }
 }

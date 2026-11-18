@@ -1,0 +1,47 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradient tła dopasowany do aplikacji -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#115E59" />
+      <stop offset="100%" stop-color="#042F2E" />
+    </linearGradient>
+
+    <!-- Gradient tarczy -->
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2DD4BF" />
+      <stop offset="100%" stop-color="#0D9488" />
+    </linearGradient>
+
+    <!-- Gradient domku -->
+    <linearGradient id="homeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FB923C" />
+      <stop offset="100%" stop-color="#EA580C" />
+    </linearGradient>
+
+    <!-- Gradient ogniwa -->
+    <linearGradient id="linkGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#60A5FA" />
+      <stop offset="50%" stop-color="#E0F2FE" />
+      <stop offset="100%" stop-color="#FFFFFF" />
+    </linearGradient>
+  </defs>
+
+  <!-- Zaokrąglone tło ikony -->
+  <rect x="24" y="24" width="464" height="464" rx="108" fill="url(#bgGrad)" />
+
+  <!-- Zewnętrzna tarcza -->
+  <path d="M256 76 C210 106, 165 116, 134 118 L134 226 C134 304, 186 358, 256 386 C326 358, 378 304, 378 226 L378 118 C347 116, 302 106, 256 76 Z" fill="url(#shieldGrad)" />
+
+  <!-- Wewnętrzne ciemniejsze wypełnienie tarczy -->
+  <path d="M256 96 C218 121, 180 130, 152 132 L152 224 C152 291, 196 338, 256 364 C316 338, 360 291, 360 224 L360 132 C332 130, 294 121, 256 96 Z" fill="#0F766E" />
+
+  <!-- Ogniwo łączące (Link) przechodzące przez tarczę -->
+  <path d="M185 335 C140 315, 130 255, 175 220 L295 125 C335 95, 390 125, 385 175 C382 205, 362 225, 340 242" fill="none" stroke="url(#linkGrad)" stroke-width="26" stroke-linecap="round" />
+
+  <!-- Domek z wyciętym sercem w centrum -->
+  <path fill-rule="evenodd" d="M256 168 L192 220 L210 220 L210 286 C210 293, 215 298, 222 298 L290 298 C297 298, 302 293, 302 286 L302 220 L320 220 L298 202 L298 176 L280 176 L280 187 Z
+           M256 276 C256 276, 226 256, 226 237 C226 227, 234 220, 243 220 C249 220, 254 223, 256 228 C258 223, 263 220, 269 220 C278 220, 286 227, 286 237 C286 256, 256 276, 256 276 Z" fill="url(#homeGrad)" />
+
+  <!-- Napis CareLink -->
+  <text x="256" y="446" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="56" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">CareLink</text>
+</svg>

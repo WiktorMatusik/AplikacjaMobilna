@@ -1,4 +1,6 @@
-﻿namespace AplikacjaMobilna.Pages;
+﻿using AplikacjaMobilna.Services;
+
+namespace AplikacjaMobilna.Pages;
 
 public partial class LoadingPage : ContentPage
 {
@@ -11,10 +13,15 @@ public partial class LoadingPage : ContentPage
     {
         base.OnAppearing();
 
-        // Symulacja ładowania (np. pobieranie danych z sieci, sprawdzanie sesji) - 2 sekundy
-        await Task.Delay(2000);
+        await Task.Delay(1500);
 
-        // Po załadowaniu przechodzimy do ekranu logowania
-        await Shell.Current.GoToAsync($"/{nameof(LoginPage)}");
+        if (!string.IsNullOrEmpty(LocalDatabaseService.CurrentUsername))
+        {
+            await Shell.Current.GoToAsync($"///{nameof(MainPage)}");
+        }
+        else
+        {
+            await Shell.Current.GoToAsync($"///{nameof(LoginPage)}");
+        }
     }
 }

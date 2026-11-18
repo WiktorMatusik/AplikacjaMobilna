@@ -4,138 +4,179 @@
              xmlns:vm="clr-namespace:AplikacjaMobilna.PageModels"
              x:Class="AplikacjaMobilna.Pages.MainPage"
              x:DataType="vm:MainPageViewModel"
-             BackgroundColor="#F4F6F9"
+             BackgroundColor="{DynamicResource AppBackgroundColor}"
              Shell.NavBarIsVisible="False">
 
     <Grid RowDefinitions="Auto, *, Auto">
 
-        <!-- Górny pasek statusu (Pasek opiekuna i baterii) -->
-        <Grid Grid.Row="0" ColumnDefinitions="*, Auto" BackgroundColor="#2E7D32" Padding="15,10">
-            <HorizontalStackLayout Grid.Column="0" Spacing="8" VerticalOptions="Center">
-                <Label Text="🛡️" FontSize="18" VerticalOptions="Center" />
-                <Label Text="OPIEKUN CZUWA" FontAttributes="Bold" TextColor="White" FontSize="16" VerticalOptions="Center" />
-            </HorizontalStackLayout>
+        <!-- Górny pasek statusu -->
+        <Border Grid.Row="0" BackgroundColor="#0F766E" StrokeThickness="0" Padding="16,12">
+            <Grid ColumnDefinitions="*, Auto" ColumnSpacing="10" MaximumWidthRequest="520" HorizontalOptions="Fill">
 
-            <HorizontalStackLayout Grid.Column="1" Spacing="5" VerticalOptions="Center">
-                <Label Text="🔋" FontSize="18" VerticalOptions="Center" />
-                <Label Text="{Binding BatteryLevel, StringFormat='{0}%'}" FontAttributes="Bold" TextColor="White" FontSize="16" VerticalOptions="Center" />
-                <Label Text="{Binding CurrentTime}" TextColor="White" FontSize="16" VerticalOptions="Center" Margin="10,0,0,0"/>
-                <Button Grid.Column="3" 
-                    Text="Wyloguj" 
-                    Command="{Binding LogoutCommand}"
-                    BackgroundColor="#D32F2F" 
-                    TextColor="White" 
-                    FontSize="12" 
-                    FontAttributes="Bold" 
-                    HeightRequest="35" 
-                    CornerRadius="8" 
-                    VerticalOptions="Center" />
-            </HorizontalStackLayout>
-            
-        </Grid>
+                <!-- Lewa strona: Ikona + Tekst -->
+                <Grid Grid.Column="0" ColumnDefinitions="Auto, *" ColumnSpacing="10" VerticalOptions="Center">
+                    <Border Grid.Column="0" BackgroundColor="#14B8A6" WidthRequest="34" HeightRequest="34" StrokeThickness="0" StrokeShape="RoundRectangle 17" VerticalOptions="Center">
+                        <Label Text="🛡️" FontSize="16" HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Border>
+
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="1">
+                        <Label Text="OPIEKUN CZUWA" 
+                               FontAttributes="Bold" 
+                               TextColor="White" 
+                               FontSize="{DynamicResource FontBody}" 
+                               LineBreakMode="WordWrap" />
+                        <Label Text="Połączenie aktywne" 
+                               TextColor="#CCFBF1" 
+                               FontSize="{DynamicResource FontSmall}" 
+                               LineBreakMode="WordWrap" />
+                    </VerticalStackLayout>
+                </Grid>
+
+                <!-- Prawa strona: Bateria i godzina -->
+                <Border Grid.Column="1" BackgroundColor="#115E59" Padding="10,6" StrokeThickness="0" StrokeShape="RoundRectangle 10" VerticalOptions="Center">
+                    <HorizontalStackLayout Spacing="6">
+                        <Label Text="{Binding BatteryLevel, StringFormat='🔋 {0}%'}" TextColor="White" FontSize="{DynamicResource FontSmall}" FontAttributes="Bold" VerticalOptions="Center" />
+                        <Label Text="|" TextColor="#5EEAD4" FontSize="{DynamicResource FontSmall}" VerticalOptions="Center" />
+                        <Label Text="{Binding CurrentTime}" TextColor="White" FontSize="{DynamicResource FontSmall}" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Border>
+            </Grid>
+        </Border>
 
         <!-- Główna zawartość -->
         <ScrollView Grid.Row="1">
-            <VerticalStackLayout Spacing="20" Padding="20">
+            <VerticalStackLayout Spacing="22" Padding="20" MaximumWidthRequest="500" HorizontalOptions="Fill">
 
-                <!-- Główny czerwony przycisk SOS -->
-                <Border Stroke="#D32F2F" 
-                        StrokeThickness="3"
-                        Background="#FFEBEE" 
-                        HeightRequest="220" 
-                        WidthRequest="220"
-                        HorizontalOptions="Center" 
-                        VerticalOptions="Center">
-
+                <!-- Przycisk SOS -->
+                <Border Stroke="#FCA5A5" 
+                        StrokeThickness="6"
+                        BackgroundColor="#DC2626" 
+                        HeightRequest="200" 
+                        WidthRequest="200"
+                        Margin="0,6,0,0"
+                        HorizontalOptions="Center">
+                    <Border.Shadow>
+                        <Shadow Brush="#DC2626" Offset="0,8" Radius="20" Opacity="0.35" />
+                    </Border.Shadow>
                     <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="110" />
+                        <RoundRectangle CornerRadius="100" />
                     </Border.StrokeShape>
-
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding TriggerSosCommand}" />
                     </Border.GestureRecognizers>
 
-                    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="5">
-                        <Label Text="WEZWIJ" TextColor="#D32F2F" FontAttributes="Bold" FontSize="26" HorizontalTextAlignment="Center" />
-                        <Label Text="POMOC!" TextColor="#D32F2F" FontAttributes="Bold" FontSize="28" HorizontalTextAlignment="Center" />
-                        <Label Text="SOS - Przytrzymaj&#10;3 sekundy" TextColor="#B71C1C" FontSize="11" HorizontalTextAlignment="Center" Margin="0,5,0,0" />
+                    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="4">
+                        <Label Text="SOS" TextColor="White" FontAttributes="Bold" FontSize="{DynamicResource FontHero}" HorizontalTextAlignment="Center" />
+                        <Label Text="WEZWIJ POMOC" TextColor="#FEE2E2" FontAttributes="Bold" FontSize="{DynamicResource FontBody}" HorizontalTextAlignment="Center" />
+                        <Label Text="Dotknij w razie zagrożenia" TextColor="#FECACA" FontSize="11" HorizontalTextAlignment="Center" Margin="0,2,0,0" />
                     </VerticalStackLayout>
                 </Border>
 
-                <!-- Sekcja: Moje Narzędzia -->
-                <Label Text="MOJE NARZĘDZIA" FontAttributes="Bold" FontSize="20" TextColor="#1A1A1A" HorizontalTextAlignment="Center" Margin="0,10,0,0" />
+                <!-- Nagłówek sekcji -->
+                <Label Text="MOJE NARZĘDZIA" 
+                       FontAttributes="Bold" 
+                       FontSize="{DynamicResource FontBody}" 
+                       CharacterSpacing="1.2" 
+                       TextColor="{DynamicResource SecondaryTextColor}" 
+                       HorizontalTextAlignment="Center" />
 
-                <!-- Siatka z kafelkami narzędzi -->
-                <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, *" ColumnSpacing="15" RowSpacing="15">
+                <!-- Kafelki narzędzi -->
+                <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, *" ColumnSpacing="14" RowSpacing="14">
 
-                    <!-- Kafelek: Kompas do domu -->
+                    <!-- Kompas do domu -->
                     <Border Grid.Row="0" Grid.Column="0" 
-                            Stroke="#CCCCCC" 
+                            Stroke="{DynamicResource CardBorderColor}" 
                             StrokeThickness="1"
-                            Background="White"
-                            StrokeShape="RoundRectangle 15"
-                            Padding="15">
+                            BackgroundColor="{DynamicResource CardBackgroundColor}"
+                            StrokeShape="RoundRectangle 20"
+                            Padding="18">
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding OpenCompassCommand}" />
                         </Border.GestureRecognizers>
-                        <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
-                            <Label Text="🧭" FontSize="36" HorizontalTextAlignment="Center" />
-                            <Label Text="KOMPAS DO DOMU" FontAttributes="Bold" FontSize="13" TextColor="#333333" HorizontalTextAlignment="Center" />
-                            <Label Text="🏠" FontSize="28" HorizontalTextAlignment="Center" />
+                        <VerticalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Border BackgroundColor="#EFF6FF" WidthRequest="56" HeightRequest="56" StrokeThickness="0" StrokeShape="RoundRectangle 28" HorizontalOptions="Center">
+                                <Label Text="🧭" FontSize="28" HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <Label Text="KOMPAS&#10;DO DOMU" 
+                                   FontAttributes="Bold" 
+                                   FontSize="{DynamicResource FontBody}" 
+                                   TextColor="{DynamicResource PrimaryTextColor}" 
+                                   HorizontalTextAlignment="Center" />
                         </VerticalStackLayout>
                     </Border>
 
-                    <!-- Kafelek: Mój Spacer -->
+                    <!-- Mój Spacer -->
                     <Border Grid.Row="0" Grid.Column="1" 
-                            Stroke="#CCCCCC" 
+                            Stroke="{DynamicResource CardBorderColor}" 
                             StrokeThickness="1"
-                            Background="White"
-                            StrokeShape="RoundRectangle 15"
-                            Padding="15">
-                        <!-- DODANE: Obsługa kliknięcia -->
+                            BackgroundColor="{DynamicResource CardBackgroundColor}"
+                            StrokeShape="RoundRectangle 20"
+                            Padding="18">
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding OpenWalkCommand}" />
                         </Border.GestureRecognizers>
-
-                        <VerticalStackLayout Spacing="4" HorizontalOptions="Center">
-                            <Label Text="🚶" FontSize="28" HorizontalTextAlignment="Center" />
-                            <Label Text="MÓJ SPACER" FontAttributes="Bold" FontSize="13" TextColor="#333333" HorizontalTextAlignment="Center" />
-                            <Label Text="{Binding WalkDistance}" FontAttributes="Bold" FontSize="22" TextColor="#2E7D32" HorizontalTextAlignment="Center" />
-                            <Label Text="Dystans dzisiaj" FontSize="10" TextColor="#666666" HorizontalTextAlignment="Center" />
+                        <VerticalStackLayout Spacing="6" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Border BackgroundColor="#F0FDF4" WidthRequest="56" HeightRequest="56" StrokeThickness="0" StrokeShape="RoundRectangle 28" HorizontalOptions="Center">
+                                <Label Text="🚶" FontSize="28" HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <Label Text="MÓJ SPACER" 
+                                   FontAttributes="Bold" 
+                                   FontSize="{DynamicResource FontBody}" 
+                                   TextColor="{DynamicResource PrimaryTextColor}" 
+                                   HorizontalTextAlignment="Center" />
+                            <Label Text="{Binding WalkDistance}" 
+                                   FontAttributes="Bold" 
+                                   FontSize="{DynamicResource FontMedium}" 
+                                   TextColor="{DynamicResource AccentColor}" 
+                                   HorizontalTextAlignment="Center" />
                         </VerticalStackLayout>
-
                     </Border>
 
-                    <!-- Kafelek szeroki: Kontakt z opiekunem -->
+                    <!-- Kontakt z opiekunem -->
                     <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
-                            Stroke="#CCCCCC" 
+                            Stroke="{DynamicResource CaregiverCardBorder}" 
                             StrokeThickness="1"
-                            Background="White"
-                            StrokeShape="RoundRectangle 15"
-                            Padding="15">
+                            BackgroundColor="{DynamicResource CaregiverCardBg}"
+                            StrokeShape="RoundRectangle 20"
+                            Padding="18">
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding CallCaregiverCommand}" />
                         </Border.GestureRecognizers>
-                        <HorizontalStackLayout Spacing="15" HorizontalOptions="Center" VerticalOptions="Center">
-                            <Label Text="📞" FontSize="32" VerticalOptions="Center" />
-                            <VerticalStackLayout VerticalOptions="Center">
-                                <Label Text="KONTAKT Z OPIEKUNEM" FontAttributes="Bold" FontSize="16" TextColor="#333333" />
-                                <Label Text="ZADZWOŃ TERAZ" FontAttributes="Bold" FontSize="14" TextColor="#1976D2" />
+                        <HorizontalStackLayout Spacing="16" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Border BackgroundColor="#2563EB" WidthRequest="52" HeightRequest="52" StrokeThickness="0" StrokeShape="RoundRectangle 26">
+                                <Label Text="📞" FontSize="24" HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <VerticalStackLayout VerticalOptions="Center" Spacing="2">
+                                <Label Text="KONTAKT Z OPIEKUNEM" 
+                                       FontAttributes="Bold" 
+                                       FontSize="{DynamicResource FontBody}" 
+                                       TextColor="{DynamicResource CaregiverTitleColor}" />
+                                <Label Text="Dotknij, aby zadzwonić teraz" 
+                                       FontSize="{DynamicResource FontSmall}" 
+                                       TextColor="{DynamicResource CaregiverSubColor}" />
                             </VerticalStackLayout>
                         </HorizontalStackLayout>
                     </Border>
 
                 </Grid>
-
             </VerticalStackLayout>
         </ScrollView>
 
         <!-- Dolny pasek nawigacyjny -->
-        <Grid Grid.Row="2" ColumnDefinitions="*, *" BackgroundColor="#E0E0E0" Padding="10">
-            <Button Grid.Column="0" Text="START" FontAttributes="Bold" FontSize="18" TextColor="Black" BackgroundColor="Transparent" />
-            <Button Grid.Column="1" Text="MENU" FontAttributes="Bold" FontSize="18" TextColor="Black" BackgroundColor="Transparent" />
-        </Grid>
+        <Border Grid.Row="2" 
+                BackgroundColor="{DynamicResource CardBackgroundColor}" 
+                Stroke="{DynamicResource CardBorderColor}" 
+                StrokeThickness="1" 
+                Padding="16,10">
+            <Button Text="☰ MENU I USTAWIENIA" 
+                    Command="{Binding OpenMenuCommand}"
+                    FontAttributes="Bold" 
+                    FontSize="{DynamicResource FontMedium}" 
+                    TextColor="{DynamicResource AccentColor}" 
+                    BackgroundColor="Transparent"
+                    MaximumWidthRequest="500"
+                    HorizontalOptions="Fill" />
+        </Border>
 
     </Grid>
-
 </ContentPage>

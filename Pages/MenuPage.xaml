@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AplikacjaMobilna.Pages.MenuPage"
+             BackgroundColor="{DynamicResource AppBackgroundColor}"
+             Title="Ustawienia i Menu">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20" MaximumWidthRequest="480" HorizontalOptions="Fill">
+
+            <!-- Nagłówek -->
+            <Label Text="Ustawienia aplikacji" 
+                   FontSize="{DynamicResource FontTitle}" 
+                   FontAttributes="Bold" 
+                   TextColor="{DynamicResource PrimaryTextColor}" 
+                   HorizontalTextAlignment="Center" />
+
+            <!-- Karta 1: Tryb nocny -->
+            <Border BackgroundColor="{DynamicResource CardBackgroundColor}" 
+                    Stroke="{DynamicResource CardBorderColor}" 
+                    StrokeThickness="1" 
+                    Padding="20" 
+                    StrokeShape="RoundRectangle 20">
+                <Grid ColumnDefinitions="*, Auto" ColumnSpacing="12">
+                    <VerticalStackLayout Grid.Column="0" Spacing="4" VerticalOptions="Center">
+                        <Label Text="🌙 Tryb nocny" 
+                               FontSize="{DynamicResource FontMedium}" 
+                               FontAttributes="Bold" 
+                               TextColor="{DynamicResource PrimaryTextColor}" />
+                        <Label Text="Biały tekst na czarnym tle (wysoki kontrast)" 
+                               FontSize="{DynamicResource FontSmall}" 
+                               TextColor="{DynamicResource SecondaryTextColor}" />
+                    </VerticalStackLayout>
+
+                    <Switch Grid.Column="1" 
+                            x:Name="DarkModeSwitch" 
+                            Toggled="OnDarkModeToggled"
+                            OnColor="#0F766E"
+                            VerticalOptions="Center" />
+                </Grid>
+            </Border>
+
+            <!-- Karta 2: Wielkość czcionki -->
+            <Border BackgroundColor="{DynamicResource CardBackgroundColor}" 
+                    Stroke="{DynamicResource CardBorderColor}" 
+                    StrokeThickness="1" 
+                    Padding="20" 
+                    StrokeShape="RoundRectangle 20">
+                <VerticalStackLayout Spacing="14">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="🔠 Wielkość czcionki" 
+                               FontSize="{DynamicResource FontMedium}" 
+                               FontAttributes="Bold" 
+                               TextColor="{DynamicResource PrimaryTextColor}" />
+                        <Label Text="Wybierz wygodny rozmiar tekstu w całej aplikacji" 
+                               FontSize="{DynamicResource FontSmall}" 
+                               TextColor="{DynamicResource SecondaryTextColor}" />
+                    </VerticalStackLayout>
+
+                    <Grid ColumnDefinitions="*, *, *" ColumnSpacing="8">
+                        <Button Grid.Column="0" 
+                                x:Name="FontNormalBtn"
+                                Text="Normalna" 
+                                Clicked="OnFontNormalClicked"
+                                FontSize="14"
+                                FontAttributes="Bold"
+                                Padding="4,0"
+                                LineBreakMode="NoWrap"
+                                CornerRadius="12"
+                                HeightRequest="48" />
+
+                        <Button Grid.Column="1" 
+                                x:Name="FontLargeBtn"
+                                Text="Duża" 
+                                Clicked="OnFontLargeClicked"
+                                FontSize="16"
+                                FontAttributes="Bold"
+                                Padding="4,0"
+                                LineBreakMode="NoWrap"
+                                CornerRadius="12"
+                                HeightRequest="48" />
+
+                        <Button Grid.Column="2" 
+                                x:Name="FontExtraLargeBtn"
+                                Text="Ogromna" 
+                                Clicked="OnFontExtraLargeClicked"
+                                FontSize="18"
+                                FontAttributes="Bold"
+                                Padding="4,0"
+                                LineBreakMode="NoWrap"
+                                CornerRadius="12"
+                                HeightRequest="48" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Karta 3: Konto i Wylogowanie -->
+            <Border BackgroundColor="{DynamicResource CardBackgroundColor}" 
+                    Stroke="{DynamicResource CardBorderColor}" 
+                    StrokeThickness="1" 
+                    Padding="20" 
+                    StrokeShape="RoundRectangle 20"
+                    Margin="0,10,0,0">
+                <VerticalStackLayout Spacing="12">
+                    <Label x:Name="LoggedUserLabel"
+                           Text="Zalogowany użytkownik"
+                           FontSize="{DynamicResource FontBody}"
+                           TextColor="{DynamicResource SecondaryTextColor}"
+                           HorizontalTextAlignment="Center" />
+
+                    <Button Text="🚪 WYLOGUJ SIĘ" 
+                            Clicked="OnLogoutClicked"
+                            BackgroundColor="#DC2626" 
+                            TextColor="White" 
+                            FontAttributes="Bold" 
+                            FontSize="{DynamicResource FontMedium}" 
+                            HeightRequest="56" 
+                            CornerRadius="14" />
+                </VerticalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

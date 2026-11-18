@@ -25,7 +25,8 @@ public partial class LoginPage : ContentPage
 
         if (username == "admin" && password == "admin")
         {
-            await Shell.Current.GoToAsync($"/{nameof(MainPage)}");
+            LocalDatabaseService.CurrentUsername = "admin";
+            await Shell.Current.GoToAsync($"///{nameof(MainPage)}");
             return;
         }
 
@@ -33,8 +34,9 @@ public partial class LoginPage : ContentPage
 
         if (role != null)
         {
-            await DisplayAlert("Sukces", $"Zalogowano pomyślnie! Rola: {role}", "OK");
-            await Shell.Current.GoToAsync($"/{nameof(MainPage)}");
+            LocalDatabaseService.CurrentUsername = username;
+            await DisplayAlertAsync("Sukces", $"Zalogowano pomyślnie! Rola: {role}", "OK");
+            await Shell.Current.GoToAsync($"///{nameof(MainPage)}");
         }
         else
         {

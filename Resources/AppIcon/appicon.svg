@@ -1,4 +1,44 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="456" height="456" viewBox="0 0 456 456" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0" y="0" width="456" height="456" fill="#512BD4" />
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradient tła dopasowany do aplikacji -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#115E59" />
+      <stop offset="100%" stop-color="#042F2E" />
+    </linearGradient>
+
+    <!-- Gradient tarczy -->
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2DD4BF" />
+      <stop offset="100%" stop-color="#0D9488" />
+    </linearGradient>
+
+    <!-- Gradient domku -->
+    <linearGradient id="homeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FB923C" />
+      <stop offset="100%" stop-color="#EA580C" />
+    </linearGradient>
+
+    <!-- Gradient ogniwa -->
+    <linearGradient id="linkGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#60A5FA" />
+      <stop offset="50%" stop-color="#E0F2FE" />
+      <stop offset="100%" stop-color="#FFFFFF" />
+    </linearGradient>
+  </defs>
+
+  <!-- Zaokrąglone tło ikony -->
+  <rect x="24" y="24" width="464" height="464" rx="108" fill="url(#bgGrad)" />
+
+  <!-- Zewnętrzna tarcza (wyśrodkowana pionowo po usunięciu tekstu) -->
+  <path d="M256 96 C210 126, 165 136, 134 138 L134 246 C134 324, 186 378, 256 406 C326 378, 378 324, 378 246 L378 138 C347 136, 302 126, 256 96 Z" fill="url(#shieldGrad)" />
+
+  <!-- Wewnętrzne ciemniejsze wypełnienie tarczy -->
+  <path d="M256 116 C218 141, 180 150, 152 152 L152 244 C152 311, 196 358, 256 384 C316 358, 360 311, 360 244 L360 152 C332 150, 294 141, 256 116 Z" fill="#0F766E" />
+
+  <!-- Ogniwo łączące (Link) przechodzące przez tarczę -->
+  <path d="M185 355 C140 335, 130 275, 175 240 L295 145 C335 115, 390 145, 385 195 C382 225, 362 245, 340 262" fill="none" stroke="url(#linkGrad)" stroke-width="26" stroke-linecap="round" />
+
+  <!-- Domek z wyciętym sercem w centrum -->
+  <path fill-rule="evenodd" d="M256 188 L192 240 L210 240 L210 306 C210 313, 215 318, 222 318 L290 318 C297 318, 302 313, 302 306 L302 240 L320 240 L298 222 L298 196 L280 196 L280 207 Z
+           M256 296 C256 296, 226 276, 226 257 C226 247, 234 240, 243 240 C249 240, 254 243, 256 248 C258 243, 263 240, 269 240 C278 240, 286 247, 286 257 C286 276, 256 296, 256 296 Z" fill="url(#homeGrad)" />
 </svg>

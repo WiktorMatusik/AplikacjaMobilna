@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using AplikacjaMobilna.Services;
 
 namespace AplikacjaMobilna
 {
@@ -7,6 +7,7 @@ namespace AplikacjaMobilna
         public App()
         {
             InitializeComponent();
+            ThemeService.ApplyTheme();
         }
 
         protected override Window CreateWindow(IActivationState? activationState)

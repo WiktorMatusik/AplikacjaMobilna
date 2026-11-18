@@ -2,31 +2,47 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AplikacjaMobilna.Pages.LoginPage"
-             Title="Logowanie">
+             BackgroundColor="#F1F5F9"
+             Shell.NavBarIsVisible="False">
 
-    <VerticalStackLayout Spacing="25" Padding="40" VerticalOptions="Center">
-        <Label Text="Panel Logowania" 
-               FontSize="28" 
-               FontAttributes="Bold" 
-               HorizontalOptions="Center" />
+    <VerticalStackLayout VerticalOptions="Center" Padding="24" MaximumWidthRequest="420" HorizontalOptions="Fill">
+        <Border BackgroundColor="White" Stroke="#E2E8F0" StrokeThickness="1" Padding="28" StrokeShape="RoundRectangle 24">
+            <Border.Shadow>
+                <Shadow Brush="#0F172A" Offset="0,8" Radius="20" Opacity="0.08" />
+            </Border.Shadow>
 
-        <Entry x:Name="UsernameEntry" 
-               Placeholder="Nazwa użytkownika" 
-               ClearButtonVisibility="WhileEditing" />
+            <VerticalStackLayout Spacing="18">
+                <Border BackgroundColor="#CCFBF1" WidthRequest="64" HeightRequest="64" StrokeThickness="0" StrokeShape="RoundRectangle 32" HorizontalOptions="Center">
+                    <Label Text="🛡️" FontSize="30" HorizontalOptions="Center" VerticalOptions="Center" />
+                </Border>
 
-        <Entry x:Name="PasswordEntry" 
-               Placeholder="Hasło" 
-               IsPassword="True" 
-               ClearButtonVisibility="WhileEditing" />
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="Witaj ponownie" FontSize="24" FontAttributes="Bold" TextColor="#0F172A" HorizontalTextAlignment="Center" />
+                    <Label Text="Zaloguj się do aplikacji opiekuna i seniora" FontSize="13" TextColor="#64748B" HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
 
-        <Button Text="Zaloguj się" 
-                Clicked="OnLoginClicked" 
-                BackgroundColor="#512BD4" 
-                TextColor="White" />
+                <Border Stroke="#CBD5E1" StrokeThickness="1" BackgroundColor="#F8FAFC" StrokeShape="RoundRectangle 12" Padding="12,4">
+                    <Entry x:Name="UsernameEntry" Placeholder="Nazwa użytkownika" TextColor="#0F172A" PlaceholderColor="#94A3B8" ClearButtonVisibility="WhileEditing" />
+                </Border>
 
-        <Button Text="Nie masz konta? Zarejestruj się" 
-                Clicked="OnGoToRegisterClicked" 
-                BackgroundColor="Transparent" 
-                TextColor="#512BD4" />
+                <Border Stroke="#CBD5E1" StrokeThickness="1" BackgroundColor="#F8FAFC" StrokeShape="RoundRectangle 12" Padding="12,4">
+                    <Entry x:Name="PasswordEntry" Placeholder="Hasło" IsPassword="True" TextColor="#0F172A" PlaceholderColor="#94A3B8" ClearButtonVisibility="WhileEditing" />
+                </Border>
+
+                <Button Text="ZALOGUJ SIĘ" 
+                        Clicked="OnLoginClicked" 
+                        BackgroundColor="#0F766E" 
+                        TextColor="White" 
+                        FontAttributes="Bold"
+                        HeightRequest="52"
+                        CornerRadius="14" />
+
+                <Button Text="Nie masz konta? Zarejestruj się" 
+                        Clicked="OnGoToRegisterClicked" 
+                        BackgroundColor="Transparent" 
+                        TextColor="#0F766E"
+                        FontAttributes="Bold" />
+            </VerticalStackLayout>
+        </Border>
     </VerticalStackLayout>
 </ContentPage>
