@@ -1,18 +1,23 @@
-﻿using AplikacjaMobilna.Services;
+﻿using System.Globalization;
+using AplikacjaMobilna.Services;
 
-namespace AplikacjaMobilna
+namespace AplikacjaMobilna;
+
+public partial class App : Application
 {
-    public partial class App : Application
+    public App()
     {
-        public App()
-        {
-            InitializeComponent();
-            ThemeService.ApplyTheme();
-        }
+        InitializeComponent();
 
-        protected override Window CreateWindow(IActivationState? activationState)
-        {
-            return new Window(new AppShell());
-        }
+        var polishCulture = new CultureInfo("pl-PL");
+        CultureInfo.DefaultThreadCurrentCulture = polishCulture;
+        CultureInfo.DefaultThreadCurrentUICulture = polishCulture;
+
+        ThemeService.ApplyTheme();
+    }
+
+    protected override Window CreateWindow(IActivationState? activationState)
+    {
+        return new Window(new AppShell());
     }
 }

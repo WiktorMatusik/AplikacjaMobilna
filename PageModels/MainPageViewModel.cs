@@ -1,4 +1,5 @@
 ﻿using AplikacjaMobilna.Pages;
+using AplikacjaMobilna.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
@@ -13,7 +14,7 @@ public partial class MainPageViewModel : ObservableObject, IDisposable
     private string _currentTime = string.Empty;
 
     [ObservableProperty]
-    private string _walkDistance = "3.2 km";
+    private string _walkDistance = WalkTrackingService.FormattedDistance;
 
     [ObservableProperty]
     private bool _isCaregiverConnected = true;
@@ -25,6 +26,8 @@ public partial class MainPageViewModel : ObservableObject, IDisposable
         UpdateBatteryLevel();
         UpdateCurrentTime();
 
+        WalkTrackingService.DistanceChanged += OnWalkDistanceChanged;
+
         try
         {
             Battery.Default.BatteryInfoChanged += OnBatteryInfoChanged;
@@ -35,15 +38,21 @@ public partial class MainPageViewModel : ObservableObject, IDisposable
         if (_timer != null)
         {
             _timer.Interval = TimeSpan.FromSeconds(1);
-
             _timer.Tick += (s, e) =>
             {
                 UpdateCurrentTime();
                 if (DateTime.Now.Second % 10 == 0) UpdateBatteryLevel();
             };
-
             _timer.Start();
         }
+    }
+
+    private void OnWalkDistanceChanged(double newDistanceKm)
+    {
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
+            WalkDistance = $"{newDistanceKm:F2} km";
+        });
     }
 
     private void OnBatteryInfoChanged(object? sender, BatteryInfoChangedEventArgs e)
@@ -51,9 +60,7 @@ public partial class MainPageViewModel : ObservableObject, IDisposable
         MainThread.BeginInvokeOnMainThread(() =>
         {
             if (e.ChargeLevel >= 0)
-            {
                 BatteryLevel = (int)Math.Round(e.ChargeLevel * 100);
-            }
         });
     }
 
@@ -67,15 +74,7 @@ public partial class MainPageViewModel : ObservableObject, IDisposable
         try
         {
             double level = Battery.Default.ChargeLevel;
-            if (level >= 0)
-            {
-                BatteryLevel = (int)Math.Round(level * 100);
-            }
-            else
-            {
-                // Urządzenie bez baterii (np. PC stacjonarny) lub brak odczytu
-                BatteryLevel = 100;
-            }
+            BatteryLevel = level >= 0 ? (int)Math.Round(level * 100) : 100;
         }
         catch
         {
@@ -108,28 +107,19 @@ public partial class MainPageViewModel : ObservableObject, IDisposable
     }
 
     [RelayCommand]
-    private async Task LogoutAsync()
+    private async Task OpenMenuAsync()
     {
-        bool confirm = await Shell.Current.DisplayAlertAsync("Wylogowanie", "Czy na pewno chcesz się wylogować?", "Tak", "Nie");
-        if (confirm)
-        {
-            await Shell.Current.GoToAsync($"/{nameof(LoginPage)}");
-        }
+        await Shell.Current.GoToAsync(nameof(MenuPage));
     }
 
     public void Dispose()
     {
         _timer?.Stop();
+        WalkTrackingService.DistanceChanged -= OnWalkDistanceChanged;
         try
         {
             Battery.Default.BatteryInfoChanged -= OnBatteryInfoChanged;
         }
         catch { }
-    }
-
-    [RelayCommand]
-    private async Task OpenMenuAsync()
-    {
-        await Shell.Current.GoToAsync(nameof(MenuPage));
     }
 }
