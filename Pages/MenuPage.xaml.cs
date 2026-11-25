@@ -4,6 +4,7 @@ namespace AplikacjaMobilna.Pages;
 
 public partial class MenuPage : ContentPage
 {
+    private readonly FirebaseAuthService _firebaseService = new();
     private bool _isInitializing = true;
 
     public MenuPage()
@@ -68,11 +69,23 @@ public partial class MenuPage : ContentPage
 
     private async void OnLogoutClicked(object? sender, EventArgs e)
     {
-        bool confirm = await DisplayAlertAsync("Wylogowanie", "Czy na pewno chcesz się wylogować?", "Tak", "Nie");
-        if (confirm)
+        try
         {
-            LocalDatabaseService.CurrentUsername = null;
-            await Shell.Current.GoToAsync($"///{nameof(LoginPage)}");
+            bool confirm = await DisplayAlertAsync("Wylogowanie", "Czy na pewno chcesz się wylogować?", "Tak", "Nie");
+            if (!confirm)
+                return;
+
+            _firebaseService.Logout();
+
+            await MainThread.InvokeOnMainThreadAsync(async () =>
+            {
+                await Shell.Current.GoToAsync($"///{nameof(LoginPage)}");
+            });
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Błąd wylogowania: {ex}");
+            Application.Current!.Windows[0].Page = new AppShell();
         }
     }
 }

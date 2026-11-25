@@ -9,3 +9,6 @@ obj/
 
 # OS-generated files
 .DS_Store
+
+# Plik konfiguracyjny firebase z kluczami
+google-services.json

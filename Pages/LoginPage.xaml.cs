@@ -4,12 +4,14 @@ namespace AplikacjaMobilna.Pages;
 
 public partial class LoginPage : ContentPage
 {
-    private readonly LocalDatabaseService _dbService;
+    private readonly FirebaseAuthService _firebaseService;
+    private readonly LocalDatabaseService _localDbService;
 
     public LoginPage()
     {
         InitializeComponent();
-        _dbService = new LocalDatabaseService();
+        _firebaseService = new FirebaseAuthService();
+        _localDbService = new LocalDatabaseService();
     }
 
     private async void OnLoginClicked(object sender, EventArgs e)
@@ -19,10 +21,11 @@ public partial class LoginPage : ContentPage
 
         if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
         {
-            await DisplayAlert("Błąd", "Wprowadź login i hasło.", "OK");
+            await DisplayAlertAsync("Błąd", "Wprowadź login i hasło.", "OK");
             return;
         }
 
+        // Konto awaryjne offline
         if (username == "admin" && password == "admin")
         {
             LocalDatabaseService.CurrentUsername = "admin";
@@ -30,17 +33,18 @@ public partial class LoginPage : ContentPage
             return;
         }
 
-        string? role = await _dbService.LoginUserAsync(username, password);
+        var (success, role, message) = await _firebaseService.LoginUserAsync(username, password);
 
-        if (role != null)
+        if (success)
         {
-            LocalDatabaseService.CurrentUsername = username;
+            await _localDbService.EnsureLocalUserProfileAsync(username.Trim(), role ?? "Senior");
+
             await DisplayAlertAsync("Sukces", $"Zalogowano pomyślnie! Rola: {role}", "OK");
             await Shell.Current.GoToAsync($"///{nameof(MainPage)}");
         }
         else
         {
-            await DisplayAlert("Błąd", "Nieprawidłowy login lub hasło.", "OK");
+            await DisplayAlertAsync("Błąd", message, "OK");
         }
     }
 
